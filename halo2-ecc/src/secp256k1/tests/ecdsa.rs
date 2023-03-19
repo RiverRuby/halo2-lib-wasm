@@ -2,10 +2,7 @@
 use ark_std::{end_timer, start_timer};
 use halo2_base::utils::PrimeField;
 use std::marker::PhantomData;
-use std::{
-    env::var,
-    io::{BufWriter, Write},
-};
+use std::{env::var, io::Write};
 
 use crate::halo2_proofs::{
     arithmetic::CurveAffine,
@@ -13,9 +10,7 @@ use crate::halo2_proofs::{
     halo2curves::bn256::{Bn256, Fr, G1Affine},
     halo2curves::secp256k1::{Fq, Secp256k1Affine},
     plonk::*,
-    poly::commitment::ParamsProver,
     transcript::{Blake2bRead, Blake2bWrite, Challenge255},
-    SerdeFormat,
 };
 use rand_core::OsRng;
 
@@ -129,15 +124,15 @@ fn bench_secp256k1_ecdsa() -> Result<(), Box<dyn std::error::Error>> {
         let vk = keygen_vk(&params, &circuit)?;
         end_timer!(vk_time);
 
-        // write the verifying key to a file
-        {
-            folder.push(format!("ecdsa_{}.vk", bench_params.degree));
-            let f = std::fs::File::create(folder.as_path()).unwrap();
-            let mut writer = BufWriter::new(f);
-            vk.write(&mut writer, SerdeFormat::RawBytes).unwrap();
-            writer.flush().unwrap();
-            folder.pop();
-        }
+        // // write the verifying key to a file
+        // {
+        //     folder.push(format!("ecdsa_{}.vk", bench_params.degree));
+        //     let f = std::fs::File::create(folder.as_path()).unwrap();
+        //     let mut writer = BufWriter::new(f);
+        //     vk.write(&mut writer, SerdeFormat::RawBytes).unwrap();
+        //     writer.flush().unwrap();
+        //     folder.pop();
+        // }
         folder.pop();
         folder.push("data");
 
