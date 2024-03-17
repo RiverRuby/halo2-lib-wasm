@@ -35,3 +35,5 @@ One observation of this benchmarking work is that you can save a ton of time in 
 | 17                     | 16.00            | 0.06            |
 | 18                     | 32.00            | 0.06            |
 | 19                     | 64.00            | 0.13            |
+
+It doesn't make sense time / bandwidth wise to precompute the proving key, in my measurements. It's also worth noting that less rows => more columns => bigger proofs => larger on-chain verification cost. If you have a larger proof, you can then do proof aggregation to make it smaller again, which can happen on a server without sacrificing privacy, but just adds more latency to the UX.
