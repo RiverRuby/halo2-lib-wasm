@@ -17,3 +17,24 @@ Edit the `halo2-ecc/src/wasm.rs` file to make available whatever Rust functions 
 ### Benchmarking on metal
 
 If you want to get performance of the ECDSA circuits on metal, then you'll need to follow the following steps. First, you'll need to uncomment the code in `halo2-ecc/src/secp256k1/ecdsa.rs` that reads `PARAMS` from `.config` files, and comment out the portion that reads them from `halo2-ecc/src/secp256k1/params.rs`. Then, you'll need to run `cargo test --release -- --nocapture bench_secp256k1_ecdsa`. If you go to the specific test in `halo2-ecc/src/secp256k1/tests/ecdsa.rs`, then you can also output serialized versions of verification keys and proving keys if you desire.
+
+## Sizes of vkeys and params
+
+ecdsa_11.vk: 115528 / 1024 / 1024 = 0.11 MB
+ecdsa_12.vk: 90696 / 1024 / 1024 = 0.09 MB
+ecdsa_13.vk: 79240 / 1024 / 1024 = 0.08 MB
+ecdsa_14.vk: 74568 / 1024 / 1024 = 0.07 MB
+ecdsa_15.vk: 72200 / 1024 / 1024 = 0.07 MB
+ecdsa_16.vk: 66888 / 1024 / 1024 = 0.06 MB
+ecdsa_17.vk: 66312 / 1024 / 1024 = 0.06 MB
+ecdsa_18.vk: 66056 / 1024 / 1024 = 0.06 MB
+ecdsa_19.vk: 131464 / 1024 / 1024 = 0.13 MB
+params_11.bin: 262404 / 1024 / 1024 = 0.25 MB
+params_12.bin: 524548 / 1024 / 1024 = 0.50 MB
+params_13.bin: 1048836 / 1024 / 1024 = 1.00 MB
+params_14.bin: 2097412 / 1024 / 1024 = 2.00 MB
+params_15.bin: 4194564 / 1024 / 1024 = 4.00 MB
+params_16.bin: 8388868 / 1024 / 1024 = 8.00 MB
+params_17.bin: 16777476 / 1024 / 1024 = 16.00 MB
+params_18.bin: 33554692 / 1024 / 1024 = 32.00 MB
+params_19.bin: 67109124 / 1024 / 1024 = 64.00 MB

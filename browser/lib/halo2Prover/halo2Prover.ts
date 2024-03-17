@@ -1,7 +1,9 @@
 import { expose } from "comlink";
 
 const fetch_kzg_params = async (k: number) => {
-  const response = await fetch(`/params_${k}.bin`);
+  const response = await fetch(
+    `https://halo2-ecdsa-params.s3.us-east-2.amazonaws.com/params_${k}.bin`
+  );
   const bytes = await response.arrayBuffer();
 
   const params = new Uint8Array(bytes);
