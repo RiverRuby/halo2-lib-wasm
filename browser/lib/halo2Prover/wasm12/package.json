@@ -1,0 +1,12 @@
+{
+  "name": "halo2-ecc",
+  "version": "0.2.2",
+  "files": [
+    "halo2_ecc_bg.wasm",
+    "halo2_ecc.js",
+    "halo2_ecc.d.ts"
+  ],
+  "module": "halo2_ecc.js",
+  "types": "halo2_ecc.d.ts",
+  "sideEffects": false
+}
