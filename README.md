@@ -8,7 +8,7 @@ To fully benchmark ECDSA, there are a number of different configs to be tried, w
 
 ### Generating params
 
-You'll need first need to download the KZG params from Hermez's trusted setup. I remember Axiom posting them somewhere at some point, but I actually can't find them anymore; message me and I can send you a copy. Then, place them into the `halo2-ecc/params` directory. You'll then need to convert them into a form that's easily readible on the TypeScript side of things. To do that, run `cargo run` in the halo2-ecc repo. Finally, you'll need to move the generated `.bin` files to the `browser/public` directory so they can be accessed by the web page.
+To use the repo, you first need to download the KZG params from Hermez's trusted setup. I remember Axiom posting them somewhere at some point, but I actually can't find them anymore. Thankfully, I had the old ones saved, and have a script to convert them into a Typescript-readable format (accessible by placing the original params in `halo2-ecc/params` and running `cargo run` in the halo2-ecc repo). I've already added these .bin files to a personal S3 bucket for easier use, but please redeploy in your own setup! Don't depend on that bucket remaining up!
 
 ### Generating WASM
 
@@ -20,9 +20,9 @@ If you want to get performance of the ECDSA circuits on metal, then you'll need 
 
 ## Sizes of params and vkeys
 
-One of the amazing parts of using PLONK based systems is not having to download a huge zkey (for full zkECDSA in circom, this was 1GB+ !!). You just need to download the KZG trusted setup params. However, the number of params you need to download increases based on the number of rows in your circuit.
+One of the amazing parts of using PLONK based systems is not having to download a huge zkey (for full zkECDSA in circom, this was 1GB+ !!). You just need to download the KZG trusted setup params. However, the number of params you need to download increases based on the number of rows in your circuit. 
 
-One observation of this benchmarking work is that you can save a ton of time in raw proving by precomputing the verification keys and loading that into the Halo2 proving. The sizes of these vkeys are quite small, but saves 6-13s on overall proving!
+One key observation of this benchmarking work is that you can save a ton of time in raw proving by precomputing the verification keys and loading that directly into the Halo2 proving. The sizes of these vkeys are quite small, but this can save 6-13s on overall proving (on an M1 Macbook).
 
 | k (log of row numbers) | Params Size (MB) | Vkeys Size (MB) |
 | ---------------------- | ---------------- | --------------- |
